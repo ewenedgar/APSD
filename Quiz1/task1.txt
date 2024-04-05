@@ -1,0 +1,12 @@
+Functional Requirements
+-have a contact entity(first name, last name, company, title, 
+zero or more phone contact(s) with label, 
+zero or more email address(es) with label )
+
+- have a phone contact entity(label, number) allowing for multiple contacts to one contact
+- have email address entity(label, address)() allowing for multiple email(s) to one contact
+- Search functionality on contacts by name, company, by title
+- Update contacts
+- Add new contacts
+- delete contacts
+- merge duplicate contacts
