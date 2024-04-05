@@ -1,0 +1,35 @@
+1. what is spring?
+	In java, spring is aims at simplifying complex and cumbersome
+	enterprise Java applications by use of technologies such as
+	 Dependency Injection, Inversion of Control,  convention over 
+	configuration and auto-configuration making it suitable for 
+	building modern, scalable web applications.
+
+2. What is Spring Boot?
+
+	Is an open source tool used for microservice-based, production grade and 
+	stand-alone java web framework development offered by Sprinng projects.
+
+3. What is the relation between Spring platform and Spring Boot?
+
+	Spring platform is a container built on java proving Spring core, spring framework, and spring projects;
+	Spring Boot is a project among many of what the Spring platform avails.
+
+4. What is the relation between Spring platform and Spring framework?
+	A spring platform is the container that supports the development of 
+	the spring framework.
+
+	Spring framework contrary is an implementation of spring core offering
+	Inversion of control, Dependency Injection, Spring context etc.
+
+5. What is Dependency Injection and how is it done in the Spring platform/framework?
+	Dependency injections argues largely that in order to use a thing, one does not need to
+	to create it. So dependency injection is where objects are not necessarily
+	created by the using class.
+	It is achieved in spring through; Field Injection, Constructor Injection, Method injection.
+
+6. What is Inversion of Control (IoC) and how is it related to Spring?
+	Inversion Of control is what the spring framework does best through creating objects and managing them
+	by injecting dependencies into them.
+
+
