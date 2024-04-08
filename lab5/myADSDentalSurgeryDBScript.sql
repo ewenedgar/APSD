@@ -18,11 +18,11 @@ USE `mydb` ;
 -- Table `mydb`.`address`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`address` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `iaddress_d` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NULL,
   `state` VARCHAR(45) NULL,
   `zip` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`iaddress_d`))
 ENGINE = InnoDB;
 
 
@@ -30,18 +30,18 @@ ENGINE = InnoDB;
 -- Table `mydb`.`patient`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`patient` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `patient_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `contact_phone` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `date_of_birth` VARCHAR(45) NULL,
   `address_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`patient_id`),
   INDEX `fk_patient_address1_idx` (`address_id` ASC) VISIBLE,
   CONSTRAINT `fk_patient_address1`
     FOREIGN KEY (`address_id`)
-    REFERENCES `mydb`.`address` (`id`)
+    REFERENCES `mydb`.`address` (`iaddress_d`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -51,13 +51,13 @@ ENGINE = InnoDB;
 -- Table `mydb`.`dentist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`dentist` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `dentist_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `contact_phone` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `specialization` INT NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`dentist_id`))
 ENGINE = InnoDB;
 
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`surgery_location` (
   INDEX `fk_surgery_location_address1_idx` (`address_id` ASC) VISIBLE,
   CONSTRAINT `fk_surgery_location_address1`
     FOREIGN KEY (`address_id`)
-    REFERENCES `mydb`.`address` (`id`)
+    REFERENCES `mydb`.`address` (`iaddress_d`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -99,12 +99,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`appointment` (
   INDEX `fk_appointment_surgery_location1_idx` (`surgery_location_id_surgery_location` ASC) VISIBLE,
   CONSTRAINT `fk_appointment_patient1`
     FOREIGN KEY (`patient_id`)
-    REFERENCES `mydb`.`patient` (`id`)
+    REFERENCES `mydb`.`patient` (`patient_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_appointment_dentist1`
     FOREIGN KEY (`dentist_id`)
-    REFERENCES `mydb`.`dentist` (`id`)
+    REFERENCES `mydb`.`dentist` (`dentist_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_appointment_surgery_location1`
@@ -121,12 +121,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`specialization` (
   `id_specialization` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `dentist_id` INT UNSIGNED NOT NULL,
+  `dentist_id` INT UNSIGNED NULL,
   PRIMARY KEY (`id_specialization`),
   INDEX `fk_specialization_dentist1_idx` (`dentist_id` ASC) VISIBLE,
   CONSTRAINT `fk_specialization_dentist1`
     FOREIGN KEY (`dentist_id`)
-    REFERENCES `mydb`.`dentist` (`id`)
+    REFERENCES `mydb`.`dentist` (`dentist_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
