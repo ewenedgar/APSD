@@ -13,7 +13,7 @@ import java.util.Optional;
 public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
-   Patient addNewPatient(Patient newPatient){
+   public Patient addNewPatient(Patient newPatient){
        return patientRepository.save(newPatient);
    }
     void removePatient(Integer id){

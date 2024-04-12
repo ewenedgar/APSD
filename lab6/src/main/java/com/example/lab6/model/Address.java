@@ -18,4 +18,10 @@ public class Address {
 
     @OneToOne(mappedBy = "home_address")
     private Patient patient;
+
+    public Address(String city, String state, String zip) {
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
 }

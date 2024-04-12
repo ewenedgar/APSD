@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
-    Appointment addNewAppointment(Appointment newAppointment){
+    public Appointment addNewAppointment(Appointment newAppointment){
         return appointmentRepository.save(newAppointment);
     }
 }

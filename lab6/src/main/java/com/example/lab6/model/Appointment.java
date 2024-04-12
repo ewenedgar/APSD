@@ -25,6 +25,12 @@ public class Appointment {
 
     @Nonnull
     @ManyToOne
-    @JoinColumn(name="publisher_id", unique = false)
+    @JoinColumn(name="surgery_id", unique = false)
     private Surgery surgery;
-}
+
+    public Appointment(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+    }
+
+

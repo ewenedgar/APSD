@@ -12,12 +12,12 @@ import java.util.Optional;
 public class DentistService {
  @Autowired
  private DentistRepository dentistRepository;
- Dentist addNewDentist(Dentist newDentist){
+ public Dentist addNewDentist(Dentist newDentist){
   return dentistRepository.save(newDentist);
  }
  void removeDentist(Integer id){
   var dent = dentistRepository.findById(id);
-  dentistRepository.delete(dent);
+  //dentistRepository.delete(dent);
  }
 
  Optional<Dentist> updateDentist (Integer id, Dentist newDentist){

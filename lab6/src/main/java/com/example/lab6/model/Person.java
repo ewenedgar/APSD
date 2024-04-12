@@ -15,6 +15,10 @@ import com.example.lab6.model.Address;
 public class Person{
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String phone;
+
 
 }

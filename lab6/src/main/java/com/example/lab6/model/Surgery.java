@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import com.example.lab6.model.Address;
-
 import java.util.List;
 
-@Entity
+@Entity(name = "surgeries")
 @Data@AllArgsConstructor@NoArgsConstructor
 
 public class Surgery {
@@ -20,6 +18,10 @@ public class Surgery {
     @JoinColumn(name = "address_id")
     private Address location_address;
 
-    @OneToMany(mappedBy = "surgery_id")
+    @OneToMany(mappedBy = "surgery")
     private List<Appointment> appointments;
+public Surgery(String name){
+    this.name = name;
+}
+
 }
