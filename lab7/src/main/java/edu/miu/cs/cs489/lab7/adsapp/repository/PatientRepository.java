@@ -25,6 +25,8 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
             String name, String street, String city, String state
     );
 
+    List<Patient> findPatientsByLastNameContainingOrFirstNameContainingOrPrimaryAddress_StreetContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_StateContaining(String searchString, String searchString1, String searchString2, String searchString3);
+
 //    SELECT p.*, a.* FROM `cs489-apsd-citylibrary-db2`.patients p
 //    inner join `cs489-apsd-citylibrary-db2`.addresses a
 //    on p.address_id = a.address_id

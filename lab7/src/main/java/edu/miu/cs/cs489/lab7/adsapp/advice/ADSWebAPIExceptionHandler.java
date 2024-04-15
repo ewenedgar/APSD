@@ -13,9 +13,9 @@ import java.util.Map;
 public class ADSWebAPIExceptionHandler {
 
 
-    @ExceptionHandler(PatientNotFoundException.class)
+    @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handlePatientNotFoundException(PatientNotFoundException patientNotFoundException) {
+    public Map<String, String> handlePatientNotFoundException(Exception patientNotFoundException) {
         Map<String , String> errorMessageMap = new HashMap<>();
         errorMessageMap.put("errorMessage", patientNotFoundException.getMessage());
         return errorMessageMap;

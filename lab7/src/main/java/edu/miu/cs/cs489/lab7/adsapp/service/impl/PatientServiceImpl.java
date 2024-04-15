@@ -34,12 +34,12 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<PatientResponse> getAllPatients() {
-        return patientRepository.findAll(Sort.by("name"))
+        return patientRepository.findAll(Sort.by("lastName"))
                 .stream()
 //                .sorted(Comparator.comparing(Patient::getName))
                 .map(p -> new PatientResponse(
                         p.getPatientId(),
-                        p.getName(),
+                        p.getLastName(),
                         (p.getPrimaryAddress()!=null)?new AddressResponse(
                                 p.getPrimaryAddress().getAddressId(),
                                 p.getPrimaryAddress().getStreet(),
@@ -53,7 +53,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientResponse addNewPatient(PatientRequest patientRequest) {
         var newPatient = new Patient(null,
-                patientRequest.name(), new Address(null,
+                patientRequest.lastName(), new Address(null,
                 patientRequest.primaryAddress().street(),
                 patientRequest.primaryAddress().city(),
                 patientRequest.primaryAddress().state(),
@@ -61,7 +61,7 @@ public class PatientServiceImpl implements PatientService {
         var savedPatient =  patientRepository.save(newPatient);
         return new PatientResponse(
                 savedPatient.getPatientId(),
-                savedPatient.getName(),
+                savedPatient.getLastName(),
                 new AddressResponse(
                         savedPatient.getPrimaryAddress().getAddressId(),
                         savedPatient.getPrimaryAddress().getStreet(),
@@ -83,7 +83,7 @@ public class PatientServiceImpl implements PatientService {
     public Patient updatePatient(Integer patientId, Patient editedPatient) {
         var patient = patientRepository.findById(patientId).orElse(null);
         if(patient != null ) {
-            patient.setName(editedPatient.getName());
+            patient.setLastName(editedPatient.getLastName());
             if(patient.getPrimaryAddress()!=null) {
                 var address = patient.getPrimaryAddress();
                 address.setStreet(editedPatient.getPrimaryAddress().getStreet());
@@ -134,7 +134,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<Patient> searchPatient(String searchString) {
-        return patientRepository.findPatientsByNameContainingOrPrimaryAddress_StreetContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_StateContaining(
+        return patientRepository.findPatientsByLastNameContainingOrFirstNameContainingOrPrimaryAddress_StreetContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_StateContaining(
                 searchString, searchString, searchString, searchString
         );
     }

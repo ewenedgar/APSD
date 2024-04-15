@@ -19,7 +19,7 @@ public class AddressController {
 
     @GetMapping(value = "/adsweb/api/v1/address/list")
     public ResponseEntity<List<AddressResponse2>> listAddress() {
-        return ResponseEntity.ok(addressService.getAllAddresses());
+        return ResponseEntity.ok(addressService.getAllAddressesSortedByCity());
     }
 
 }

@@ -44,6 +44,12 @@ public class Patient {
         this.primaryAddress = primaryAddress;
     }
 
+    public Patient(Integer patientId, String lastName, Address address) {
+        this.patientId = patientId;
+        this.lastName = lastName;
+        this.primaryAddress = primaryAddress;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Patient{");

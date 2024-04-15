@@ -9,6 +9,7 @@ public interface AddressService {
 
     Address addNewAddress(Address newAddress);
     List<AddressResponse2> getAllAddresses();
+    List<AddressResponse2> getAllAddressesSortedByCity();
 
     void deleteAddressById(Integer addressId);
 
