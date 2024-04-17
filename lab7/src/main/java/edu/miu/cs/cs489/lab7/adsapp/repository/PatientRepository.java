@@ -13,25 +13,16 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     @Query(value = "select p from Patient p")
     public List<Patient> getMyCustomListOfPatient();
 
-    @Query(value = "select p from Patient p where p.name = :name")
-    public Optional<Patient> getMyCustomPatientByName(String name);
+    @Query(value = "select p from Patient p where p.lastName = :name")
+    public Optional<Patient> getPatientByLastNameStart(String name);
 
-    @Query(value = "SELECT * FROM `cs489-apsd-citylibrary-db2`.patients p where p.name like 'Ap%'", nativeQuery = true)
-    public Optional<Patient> getMyNativeCustomPatientByName(String name);
+    @Query(value = "SELECT * FROM `cs489-apsd-ads-db2`.patients p where p.lastname like 'Ap%'", nativeQuery = true)
+    public Optional<Patient> getMyNativeCustomPatientByLastName(String name);
 
     // Using Query methods
-    public List<Patient> findPatientByNameIsStartingWith(String strNameStart);
-    public List<Patient> findPatientsByNameContainingOrPrimaryAddress_StreetContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_StateContaining(
-            String name, String street, String city, String state
-    );
+    public List<Patient> findPatientByLastNameIsStartingWith(String strNameStart);
 
-    List<Patient> findPatientsByLastNameContainingOrFirstNameContainingOrPrimaryAddress_StreetContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_StateContaining(String searchString, String searchString1, String searchString2, String searchString3);
 
-//    SELECT p.*, a.* FROM `cs489-apsd-citylibrary-db2`.patients p
-//    inner join `cs489-apsd-citylibrary-db2`.addresses a
-//    on p.address_id = a.address_id
-//    where p.name like '%CA%'
-//    OR a.street like '%CA%'
-//    OR a.city like '%CA%'
-//    OR a.state like '%CA%'
+    List<Patient> findPatientsByLastNameContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_State(String searchString, String searchString1, String searchString2);
 }
+

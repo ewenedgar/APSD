@@ -9,6 +9,7 @@ import edu.miu.cs.cs489.lab7.adsapp.model.Patient;
 import edu.miu.cs.cs489.lab7.adsapp.service.PatientService;
 import edu.miu.cs.cs489.lab7.adsapp.repository.AddressRepository;
 import edu.miu.cs.cs489.lab7.adsapp.repository.PatientRepository;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,7 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientResponse> getAllPatients() {
         return patientRepository.findAll(Sort.by("lastName"))
                 .stream()
-//                .sorted(Comparator.comparing(Patient::getName))
+//                .sorted(Comparator.comparing(Patient::getLastName))
                 .map(p -> new PatientResponse(
                         p.getPatientId(),
                         p.getLastName(),
@@ -51,7 +52,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientResponse addNewPatient(PatientRequest patientRequest) {
+    public PatientResponse addNewPatient( PatientRequest patientRequest) {
         var newPatient = new Patient(null,
                 patientRequest.lastName(), new Address(null,
                 patientRequest.primaryAddress().street(),
@@ -128,14 +129,14 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<Patient> getPatientByNameStart(String nameStart) {
-        return patientRepository.findPatientByNameIsStartingWith(nameStart);
+    public List<Patient> getPatientByLastNameStart(String nameStart) {
+        return patientRepository.findPatientByLastNameIsStartingWith(nameStart);
     }
 
     @Override
     public List<Patient> searchPatient(String searchString) {
-        return patientRepository.findPatientsByLastNameContainingOrFirstNameContainingOrPrimaryAddress_StreetContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_StateContaining(
-                searchString, searchString, searchString, searchString
+        return patientRepository.findPatientsByLastNameContainingOrPrimaryAddress_CityContainingOrPrimaryAddress_State(
+                searchString, searchString, searchString
         );
     }
 }
